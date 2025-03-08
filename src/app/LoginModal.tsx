@@ -36,10 +36,10 @@ export function LoginModal({ onClose, handleLogin }: LoginModalProps) {
 
         if (isRegistering) {
           toast.success('Регистрация прошла успешно!');
+          onClose()
         } else {
           handleLogin(role, token);
         }
-        onClose()
       }
     } catch (err: any) {
       setError(err.response?.data?.message || 'Что-то пошло не так');

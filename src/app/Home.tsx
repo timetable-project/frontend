@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
 import { Header } from './Header'; // Путь к вашему компоненту Header
 
 export function Home() {
@@ -23,7 +22,6 @@ export function Home() {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
     router.push('/dashboard'); // Переход на страницу панели
-    toast.success('Вы успешно авторизованы!');
   };
 
   return (
