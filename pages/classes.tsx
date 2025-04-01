@@ -5,6 +5,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PencilIcon, TrashIcon, PlusCircleIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
+import React from 'react';
 
 export default function Classes() {
   const [classes, setClasses] = useState<{ id: number; name: string }[]>([]);

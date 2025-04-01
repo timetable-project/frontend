@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Header } from './Header'; // Путь к вашему компоненту Header
+import React from 'react';
 
 export function Home() {
-  const [_isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [_role, setRole] = useState<string | null>(null);
+  const [_isAuthenticated, setIsAuthenticated] = useState<boolean>(false); // eslint-disable-line
+  const [_role, setRole] = useState<string | null>(null); // eslint-disable-line
   const router = useRouter();
 
   useEffect(() => {

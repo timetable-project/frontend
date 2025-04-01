@@ -1,6 +1,7 @@
 import { LoggedHeader } from '@/app/LoggedHeader';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
+import React from 'react';
 
 import '@/app/globals.css';
 

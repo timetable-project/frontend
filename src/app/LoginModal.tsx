@@ -41,7 +41,7 @@ export function LoginModal({ onClose, handleLogin }: LoginModalProps) {
           handleLogin(role, token);
         }
       }
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line
       setError(err.response?.data?.message || 'Что-то пошло не так');
     } finally {
       setLoading(false);
