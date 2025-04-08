@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { users } from "./register";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -7,23 +8,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const { nickname, password } = req.body;
 
-  // Моки для проверки логина по нику
-  if (nickname === "admin" && password === "admin") {
-    // Успешный логин для админа
-    return res.status(200).json({
-      message: "Успешный вход",
-      token: "fake-jwt-token-admin", // Токен для админа
-      role: "admin", // Роль админа
-    });
-  } else if (nickname === "user" && password === "user") {
-    // Успешный логин для обычного пользователя
-    return res.status(200).json({
-      message: "Успешный вход",
-      token: "fake-jwt-token-user", // Токен для пользователя
-      role: "user", // Роль пользователя
-    });
-  } else {
-    // Ошибка авторизации
+  // Проверка существования пользователя в мапе
+  const user = users.get(nickname);
+
+  if (!user || user.password !== password) {
     return res.status(401).json({ message: "Неверный ник или пароль" });
   }
+
+  // Возвращаем успешный ответ
+  return res.status(200).json({
+    message: "Успешный вход",
+    token: `fake-jwt-token-${user.role}`, // Генерация токена в зависимости от роли
+    role: user.role, // Роль пользователя
+  });
 }
