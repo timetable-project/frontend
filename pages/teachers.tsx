@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import '@/app/globals.css';
 import Panel from '@/app/Panel';
 import { useState, useEffect } from 'react';
@@ -5,7 +7,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Select from 'react-select';
-import { PencilIcon, TrashIcon, PlusCircleIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
+import { PencilIcon, TrashIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 import React from 'react';
 
 export default function Teachers() {

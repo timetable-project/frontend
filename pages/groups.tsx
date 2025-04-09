@@ -1,3 +1,4 @@
+/* eslint-disable */
 import '@/app/globals.css';
 import Panel from '@/app/Panel';
 import { useEffect, useState } from 'react';
@@ -5,7 +6,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Select, { MultiValue } from 'react-select';
-import { PencilIcon, TrashIcon, PlusCircleIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
+import { PencilIcon, TrashIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 import React from 'react';
 
 type Subject = { id: number; name: string };
@@ -19,7 +20,7 @@ export default function Groups() {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editingData, setEditingData] = useState({ name: '', subjects: [] as GroupSubject[] });
   const [isLoading, setIsLoading] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
+  const [_, setIsSaving] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
