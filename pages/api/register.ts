@@ -1,20 +1,5 @@
+import { getUsers, setUsers } from "@/shared";
 import type { NextApiRequest, NextApiResponse } from "next";
-
-export const users = new Map<
-  string,
-  { password: string; email: string; role: string }
->();
-
-users.set("admin", {
-  password: "admin",
-  email: "admin@example.com",
-  role: "admin",
-});
-users.set("user", {
-  password: "user",
-  email: "user@example.com",
-  role: "user",
-});
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -28,6 +13,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   // Проверка на уникальность никнейма
+  const users = getUsers();
   if (users.has(nickname)) {
     return res
       .status(400)
@@ -39,6 +25,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   // Добавляем пользователя в мапу
   users.set(nickname, { password, email, role });
+  setUsers(users);
 
   return res
     .status(201)

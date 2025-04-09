@@ -1,13 +1,10 @@
+import { getTeachers, setTeachers } from "@/shared";
 import { NextApiRequest, NextApiResponse } from "next";
 
 // Пример начальных данных
-let teachers = [
-  { id: 1, name: "Иванов Иван Иванович", subjects: [1, 2] },
-  { id: 2, name: "Петрова Анна Сергеевна", subjects: [5, 9] },
-  { id: 3, name: "Сидоров Алексей Николаевич", subjects: [3, 4] },
-];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  let teachers = getTeachers();
   if (req.method === "GET") {
     return res.status(200).json(teachers);
   }
@@ -26,6 +23,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     };
 
     teachers.push(newTeacher);
+    setTeachers(teachers);
     return res.status(201).json(newTeacher);
   }
 
@@ -42,6 +40,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
 
     teachers[index] = { id, name, subjects };
+    setTeachers(teachers);
     return res.status(200).json({ message: "Учитель обновлён" });
   }
 
@@ -53,6 +52,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
 
     teachers = teachers.filter((t) => t.id !== id);
+    setTeachers(teachers);
     return res.status(200).json({ message: "Учитель удалён" });
   }
 

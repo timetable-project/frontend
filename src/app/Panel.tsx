@@ -40,7 +40,8 @@ export default function Panel({ children }: Readonly<{ children: React.ReactNode
 
   // Все возможные пункты меню
   const allItems = [
-    ["Главная", "dashboard", "user", "admin"],
+    ["Расписание групп", "groups-schedule", "user", "admin"],
+    ["Расписание учителей", "teachers-schedule", "user", "admin"],
     ["Группы", "groups", "admin"],
     ["Учителя", "teachers", "admin"],
     ["Кабинеты", "classes", "admin"],
@@ -62,7 +63,7 @@ export default function Panel({ children }: Readonly<{ children: React.ReactNode
           <button
             key={path}
             onClick={() => handleNavigation('/' + path)}
-            className="bg-blue-800 py-3 px-5 rounded-lg border-2 border-transparent hover:border-blue-500 hover:bg-blue-900 transition transform hover:scale-105 mt-4 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="bg-blue-800 py-3 px-5 rounded-lg border-2 border-transparent hover:border-blue-500 hover:bg-blue-900 transition transform hover:scale-105 mt-4 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
           >
             {label}
           </button>
@@ -72,7 +73,7 @@ export default function Panel({ children }: Readonly<{ children: React.ReactNode
         {role === "admin" && (
           <button
             onClick={handleGenerateSchedule}
-            className="bg-green-600 py-3 px-5 rounded-lg border-2 border-transparent hover:border-green-500 hover:bg-green-700 transition transform hover:scale-105 mt-4 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="bg-green-600 py-3 px-5 rounded-lg border-2 border-transparent hover:border-green-500 hover:bg-green-700 transition transform hover:scale-105 mt-4 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-sm"
           >
             Сгенерировать расписание
           </button>

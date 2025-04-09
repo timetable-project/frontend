@@ -1,40 +1,14 @@
 // pages/api/groups.ts
 
+import { getGroups, setGroups } from "@/shared";
 import { NextApiRequest, NextApiResponse } from "next";
 
-type GroupSubject = {
-  subjectId: number;
-  lessons: number;
-};
-
-type Group = {
-  id: number;
-  name: string;
-  subjects: GroupSubject[];
-};
-
 // Пример начальных данных
-let groups: Group[] = [
-  {
-    id: 1,
-    name: "10А",
-    subjects: [
-      { subjectId: 1, lessons: 3 },
-      { subjectId: 2, lessons: 2 },
-    ],
-  },
-  {
-    id: 2,
-    name: "10Б",
-    subjects: [
-      { subjectId: 3, lessons: 4 },
-    ],
-  },
-];
 
 let nextId = 3;
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  let groups = getGroups();
   if (req.method === "GET") {
     return res.status(200).json(groups);
   }
@@ -45,12 +19,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       return res.status(400).json({ message: "Неверный формат данных" });
     }
 
-    const newGroup: Group = {
+    const newGroup = {
       id: nextId++,
       name,
       subjects,
     };
     groups.push(newGroup);
+    setGroups(groups);
     return res.status(200).json(newGroup);
   }
 
@@ -70,6 +45,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       return res.status(400).json({ message: "Некорректный ID" });
     }
     groups = groups.filter((g) => g.id !== id);
+    setGroups(groups);
     return res.status(200).json({ message: "Группа удалена" });
   }
 

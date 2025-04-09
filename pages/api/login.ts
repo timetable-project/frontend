@@ -1,5 +1,5 @@
+import { getUsers } from "@/shared";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { users } from "./register";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -9,6 +9,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { nickname, password } = req.body;
 
   // Проверка существования пользователя в мапе
+  const users = getUsers();
   const user = users.get(nickname);
 
   if (!user || user.password !== password) {

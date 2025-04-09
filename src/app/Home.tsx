@@ -22,7 +22,7 @@ export function Home() {
     setRole(role);
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
-    router.push('/dashboard'); // Переход на страницу панели
+    router.push('/groups-schedule'); // Переход на страницу панели
   };
 
   return (
